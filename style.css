@@ -12,7 +12,7 @@ body {
   min-height: 100svh;
   margin: 0;
   display: grid;
-  place-items: center;
+  place-items: start center;
   overflow-x: hidden;
   padding: 24px 0;
   color: #ededed;
@@ -132,7 +132,7 @@ main {
   height: 184px;
   margin: 0 auto 26px;
   display: grid;
-  place-items: center;
+  place-items: start center;
   overflow: hidden;
   border: 2px solid rgba(255, 255, 255, .62);
   border-radius: 50%;
@@ -210,7 +210,7 @@ h1 {
   height: 24px;
   flex: 0 0 24px;
   display: grid;
-  place-items: center;
+  place-items: start center;
   border: 1px solid rgba(255, 255, 255, .17);
   border-radius: 8px;
   background: rgba(255, 255, 255, .09);
@@ -321,7 +321,7 @@ h1 {
   position: absolute;
   inset: 0;
   display: grid;
-  place-items: center;
+  place-items: start center;
   color: #bdbdbd;
   font-size: 12px;
   font-weight: 750;
@@ -459,7 +459,7 @@ h1 {
   height: 38px;
   flex: 0 0 38px;
   display: grid;
-  place-items: center;
+  place-items: start center;
   border: 1px solid rgba(255, 255, 255, .16);
   border-radius: 12px;
   background: rgba(255, 255, 255, .08);
@@ -685,7 +685,7 @@ h1 {
   width: 42px;
   height: 42px;
   display: grid;
-  place-items: center;
+  place-items: start center;
   border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 50%;
   background: rgba(255, 255, 255, .1);
@@ -959,5 +959,232 @@ h1 {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: .01ms !important;
+  }
+}
+
+/* На широком экране Максим слева, Даниил справа. */
+.profile-list {
+  width: min(1600px, calc(100% - 48px));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px minmax(0, 1fr);
+  justify-items: center;
+  gap: 18px;
+}
+
+.profile-list > .profile-card {
+  width: 100%;
+  min-height: min(760px, calc(100svh - 56px));
+  padding: clamp(22px, 2vw, 36px);
+  gap: clamp(22px, 2vw, 34px);
+}
+
+.profile-card--maxim {
+  grid-column: 1;
+  grid-row: 1;
+  --accent: #ff83c8;
+  --accent-soft: rgba(255, 131, 200, .12);
+  --accent-border: rgba(255, 131, 200, .32);
+  --main-text: #fff1fa;
+  --muted-text: #d6adc5;
+  border-color: rgba(255, 111, 190, .45);
+  background:
+    radial-gradient(ellipse at 12% 8%, rgba(173, 44, 125, .26), transparent 44%),
+    linear-gradient(145deg, rgba(38, 12, 37, .98), rgba(47, 17, 49, .96) 52%, rgba(24, 17, 39, .98));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .38), 0 0 36px rgba(222, 60, 154, .12);
+}
+
+.profile-card--daniil {
+  grid-column: 3;
+  grid-row: 1;
+  --accent: #64e4f3;
+  --accent-soft: rgba(100, 228, 243, .12);
+  --accent-border: rgba(100, 228, 243, .32);
+  --main-text: #eafbff;
+  --muted-text: #a9ccd6;
+  border-color: rgba(87, 216, 240, .42);
+  background:
+    radial-gradient(ellipse at 88% 7%, rgba(31, 135, 164, .27), transparent 45%),
+    linear-gradient(145deg, rgba(8, 27, 43, .98), rgba(10, 38, 54, .96) 52%, rgba(12, 25, 43, .98));
+  box-shadow: 0 24px 80px rgba(0, 0, 0, .38), 0 0 36px rgba(49, 197, 222, .12);
+}
+
+.minecraft-heart {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  justify-self: center;
+  width: 44px;
+  height: 38px;
+  z-index: 2;
+  filter: drop-shadow(0 3px 0 #641d32) drop-shadow(0 0 8px rgba(255, 75, 111, .5));
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+
+.minecraft-heart svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  shape-rendering: crispEdges;
+}
+
+.profile-card--maxim .brand-title-sub {
+  gap: 6px;
+  font-size: 9px;
+  letter-spacing: .02em;
+}
+
+.song-caption {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profile-card--maxim .profile-identity,
+.profile-card--daniil .profile-identity {
+  border-color: var(--accent-border);
+}
+
+.profile-card--maxim .avatar,
+.profile-card--daniil .avatar {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 8px var(--accent-soft), 0 0 28px var(--accent-soft);
+}
+
+.profile-card--maxim h1,
+.profile-card--maxim .brand-title-main {
+  background: linear-gradient(110deg, #fff1fa 5%, #ff83c8 48%, #ffd0e9 92%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.profile-card--daniil h1,
+.profile-card--daniil .brand-title-main {
+  background: linear-gradient(110deg, #eafbff 5%, #64e4f3 48%, #b0f7ff 92%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.profile-card--maxim .brand-title-sub,
+.profile-card--maxim .section-heading,
+.profile-card--maxim .profile-status,
+.profile-card--maxim .project-meta,
+.profile-card--maxim .project-card-link {
+  color: var(--accent);
+}
+
+.profile-card--daniil .brand-title-sub,
+.profile-card--daniil .section-heading,
+.profile-card--daniil .profile-status,
+.profile-card--daniil .project-meta,
+.profile-card--daniil .project-card-link {
+  color: var(--accent);
+}
+
+.profile-card--maxim .profile-status,
+.profile-card--daniil .profile-status,
+.profile-card--maxim .skill-tag,
+.profile-card--daniil .skill-tag,
+.profile-card--maxim .featured-link,
+.profile-card--daniil .featured-link,
+.profile-card--maxim .project-card,
+.profile-card--daniil .project-card,
+.profile-card--maxim .social-link,
+.profile-card--daniil .social-link,
+.profile-card--maxim .discord-presence,
+.profile-card--daniil .discord-presence,
+.profile-card--maxim .audio-player,
+.profile-card--daniil .audio-player {
+  border-color: var(--accent-border);
+  background-color: var(--accent-soft);
+}
+
+.profile-card--maxim .status-sticker,
+.profile-card--daniil .status-sticker,
+.profile-card--maxim .featured-icon,
+.profile-card--daniil .featured-icon,
+.profile-card--maxim .audio-toggle,
+.profile-card--daniil .audio-toggle {
+  border-color: var(--accent-border);
+  background-color: var(--accent-soft);
+  color: var(--main-text);
+}
+
+.profile-card--maxim .role,
+.profile-card--maxim .about,
+.profile-card--maxim .discord-description,
+.profile-card--maxim .featured-copy small,
+.profile-card--maxim .project-card p {
+  color: var(--muted-text);
+}
+
+.profile-card--daniil .role,
+.profile-card--daniil .about,
+.profile-card--daniil .discord-description,
+.profile-card--daniil .featured-copy small,
+.profile-card--daniil .project-card p {
+  color: var(--muted-text);
+}
+
+.profile-card--maxim .skill-tag,
+.profile-card--daniil .skill-tag,
+.profile-card--maxim .discord-name,
+.profile-card--daniil .discord-name,
+.profile-card--maxim .featured-link,
+.profile-card--daniil .featured-link,
+.profile-card--maxim .project-card h2,
+.profile-card--daniil .project-card h2,
+.profile-card--maxim .social-link,
+.profile-card--daniil .social-link {
+  color: var(--main-text);
+}
+
+.profile-card .is-placeholder,
+.profile-card .is-placeholder:hover {
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.profile-card .audio-toggle:disabled,
+.profile-card .volume-slider:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+@media (max-width: 1040px) {
+  .profile-list {
+    width: min(780px, calc(100% - 32px));
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .profile-card--maxim {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .minecraft-heart {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .profile-card--daniil {
+    grid-column: 1;
+    grid-row: 3;
+  }
+}
+
+@media (max-width: 760px) {
+  .profile-list {
+    width: calc(100% - 24px);
+  }
+}
+
+@media (max-width: 420px) {
+  .profile-list {
+    width: calc(100% - 12px);
   }
 }
